@@ -22,6 +22,31 @@ CREATE TABLE employee (
     manager_id INT NULL
 );
 
+INSERT INTO department (name)
+VALUES ("Corporate"), ("HR"), ("Sales"), ("Accounting"), ("Office Administrator"), ("Quality Assurance"), ("Customer Service"), ("Reception"), ("Warehouse");
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Manager", 75000, 1),
+("Head of HR", 25000, 2),
+("Salesman", 60000, 3),
+("Head of Accounting", 65000, 4),
+("Office Administrator", 41500, 5),
+("Head of Quality Assurance", 40000, 6),
+("Customer Service Rep", 30000, 7),
+("Receptionist", 30000, 8),
+("Foreman", 35000, 9);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ("Michael", "Scott", 1, null),
+("Toby", "Flenderson", 2, 1),
+("Dwight", "Schrute", 3, 1),
+("Angela", "Martin", 4, 1),
+("Pam", "Beesly", 5, 1), 
+("Meredith", "Palmer", 6, 1),
+("Kelly", "Kapoor", 7, 1), 
+("Erin", "Hannon", 8, 1), 
+("Darryl", "Philbin", 9, 1); 
+
 
 -- * **department**:
 

@@ -169,35 +169,24 @@ function addDepartment() {
         })
 };
 
-// let fullNames;
+
 function updateEmployeeRole() {
     var array = [];
     connection.query("SELECT first_name, last_name FROM employee", function (err, res) {
         if (err) throw err;
 
         array.push(...res);
-        // console.log('this is res',res);
-        // console.log('this is my array', Object.entries(res[0]));
-        // var obj = JSON.parse(res);
-        // console.log(obj);
-        // array.push(obj);
-
-
-
-        // console.log(array);
-        // var fullNames = array.map(function(person) {
-        //     return person.first_name + person.last_name;
-        // });
-        // console.log(fullNames);
         inquirer
             .prompt([
                 {
-                    name: "updateRoleEmployee",
+                    name: "updatedRoleEmployee",
                     type: "list",
                     message: "Which employee's role would you like to update?",
-                    // choices: [array[0].first_name]
                     choices: array.map(function(person) {
-                        return person.first_name + person.last_name;
+                        // return person.first_name + " " + person.last_name;
+                        return person.last_name;
+
+                        
                     })
                 },
                 {
@@ -206,7 +195,9 @@ function updateEmployeeRole() {
                     message: "What is the employee's updated role id number?"
                 }
             ]).then(function (answer) {
-                connection.query("UPDATE employee SET role_id = ? WHERE name = ?", [answer.updatedrole, answer.updatedRoleEmployee], (err, res) => {
+                position = answer.updatedRoleEmployee.indexOf("Ayodeji")
+                // console.log(position);
+                connection.query(`UPDATE employee SET role_id = ${answer.updatedRole} WHERE last_name = "${answer.updatedRoleEmployee}"`, function (err, res) {
                     if (err) throw err;
 
                     console.log(`Employee ${answer.updatedRoleEmployee} has been updated!`)
